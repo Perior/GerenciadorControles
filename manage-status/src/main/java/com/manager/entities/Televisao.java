@@ -1,14 +1,12 @@
 package com.manager.entities;
-import org.springframework.stereotype.Component;
 
-
-@Component
 public class Televisao extends Device{
+    private int volume;
     private int totalCanal;
     private int canal;
 
 
-    public Televisao(boolean power, int tempVol, EMarca modelo, int totalCanal, int canal) {
+    public Televisao(boolean power, int tempVol, MarcaEnum modelo, int totalCanal, int canal) {
         super(power, tempVol, modelo);
         this.totalCanal = totalCanal;
         this.canal = canal;
@@ -41,16 +39,19 @@ public class Televisao extends Device{
 
     }
 
-    @Override
-    void setTempVol(boolean syntTempVol) {
+    public int getVolume() {
+        return volume;
+    }
 
-        if(syntTempVol){
-            if(this.tempVol < 100)
-                this.tempVol++;
+    public void setVolume(boolean syntVol) {
+
+        if(syntVol){
+            if(this.volume < 100)
+                this.volume++;
         }
         else{
-            if(this.tempVol > 0)
-                this.tempVol--;
+            if(this.volume > 0)
+                this.volume--;
         }
         
     }

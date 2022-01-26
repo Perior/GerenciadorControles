@@ -1,25 +1,27 @@
 package com.manager.entities;
-import org.springframework.stereotype.Component;
 
-
-@Component
 public class ArCondicionado extends Device{
+    private int temperature;
     
-    public ArCondicionado(boolean power, int tempVol, EMarca modelo) {
+    
+    public ArCondicionado(boolean power, int tempVol, MarcaEnum modelo) {
         super(power, tempVol, modelo);
     }
+    
 
+    public int getTemperature() {
+        return temperature;
+    }
 
-    @Override
-    void setTempVol(boolean syntTempVol) {
+    public void setTemperature(boolean syntTemp) {
 
-        if(syntTempVol){
-            if(this.tempVol < 28)
-                this.tempVol++;
+        if(syntTemp){
+            if(this.temperature < 28)
+                this.temperature++;
         }
         else{
-            if(this.tempVol > 16)
-                this.tempVol--;
+            if(this.temperature > 16)
+                this.temperature--;
         }
         
     }
