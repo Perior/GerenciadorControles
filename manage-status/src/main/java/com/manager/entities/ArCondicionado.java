@@ -4,8 +4,8 @@ public class ArCondicionado extends Device{
     private int temperature;
     
     
-    public ArCondicionado(boolean power, int tempVol, MarcaEnum modelo) {
-        super(power, tempVol, modelo);
+    public ArCondicionado(boolean power, MarcaEnum modelo) {
+        super(power, modelo);
     }
     
 

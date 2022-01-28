@@ -6,8 +6,8 @@ public class Televisao extends Device{
     private int canal;
 
 
-    public Televisao(boolean power, int tempVol, MarcaEnum modelo, int totalCanal, int canal) {
-        super(power, tempVol, modelo);
+    public Televisao(boolean power, MarcaEnum modelo, int totalCanal, int canal) {
+        super(power, modelo);
         this.totalCanal = totalCanal;
         this.canal = canal;
     }
@@ -20,11 +20,11 @@ public class Televisao extends Device{
         
         if(syntCanal){
             if(canal < totalCanal)
-                canal++;
+                this.canal++;
         }
         else{
             if(canal > 1)
-                canal--;
+                this.canal--;
         }
     }
 
