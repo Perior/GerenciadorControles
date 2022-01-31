@@ -34,4 +34,9 @@ public abstract class Device {
         this.modelo = modelo;
     }
 
+    @Override
+    public String toString() {
+        return "id=" + id + ", modelo=" + modelo + ", power=" + power;
+    }
+
 }

@@ -6,6 +6,7 @@ public class ArCondicionado extends Device{
     
     public ArCondicionado(boolean power, MarcaEnum modelo) {
         super(power, modelo);
+        this.temperature = 26;
     }
     
 
@@ -25,5 +26,13 @@ public class ArCondicionado extends Device{
         }
         
     }
+
+
+    @Override
+    public String toString() {
+        return "ArCondicionado [" + super.toString() + ", temperature=" + temperature + "]";
+    }
+
+    
 
 }

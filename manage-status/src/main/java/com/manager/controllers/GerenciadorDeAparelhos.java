@@ -2,9 +2,12 @@ package com.manager.controllers;
 
 import java.util.List;
 
+import com.manager.entities.ArCondicionado;
+import com.manager.entities.ControleRemotoArCondicionado;
+import com.manager.entities.ControleRemotoTelevisao;
 import com.manager.entities.Televisao;
-import com.manager.services.ControleRemotoTelevisao;
-import com.manager.services.DeviceService;
+import com.manager.services.ArCondicionadoService;
+import com.manager.services.TelevisaoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,14 +25,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class GerenciadorDeAparelhos {
 
     @Autowired
-    private DeviceService deviceService;
+    private TelevisaoService televisaoService;
 
-    private ControleRemotoTelevisao controleTv;
+    @Autowired
+    private ArCondicionadoService arService;
 
     //Televisão
     @GetMapping("/televisores")
-    public List<Televisao> all_tvs(){
-        List<Televisao> listaTv = deviceService.listar();
+    public List<ControleRemotoTelevisao> allTv(){
+        //Televisao tv = new Televisao(true, MarcaEnum.LG, 200);
+        //televisaoService.adicionar(tv);
+        
+        List<ControleRemotoTelevisao> listaTv = televisaoService.listar();
         //Exception
         return listaTv;
     }
@@ -37,45 +44,87 @@ public class GerenciadorDeAparelhos {
     @GetMapping("/televisores/{id}")
     public Televisao tv(@PathVariable("id") String id){
         //Exception
-        return deviceService.getTv(id);
+        return televisaoService.getTv(id);
     }
 
     @PostMapping("/televisores")
-    public Televisao novaTv(@RequestBody Televisao tv) {
+    public ControleRemotoTelevisao novaTv(@RequestBody Televisao tv) {
         //Exception
-        return this.deviceService.adicionar(tv);
+        return this.televisaoService.adicionar(tv);
     }
 
     @PutMapping("/televisores/{id}")
-    public Televisao editarTv(@PathVariable("id") String id, @RequestBody Televisao tv) {
-        //Exception        
-        return this.deviceService.atualizar(id, tv);
+    public ControleRemotoTelevisao editarTv(@PathVariable("id") String id, @RequestBody Televisao tv) {
+        return this.televisaoService.atualizar(id, tv);
     }
 
     @DeleteMapping("/televisores/{id}")
     public void deletaTv(@PathVariable("id") String id){
-        deviceService.deleta(id);
+        televisaoService.deleta(id);
     }
 
-    @PatchMapping("/televisores/{id}")
-    public Televisao ligarDesligar(@PathVariable("id") String id, @RequestBody boolean estado) {
+    @PatchMapping("/televisores/{id}:ligar_desligar")
+    public Televisao ligarDesligar(@PathVariable("id") String id, @RequestBody boolean power) {
         //Exception        
-        return this.deviceService.powerOnOff(id, estado);
+        return this.televisaoService.powerOnOff(id, power);
     }
 
-    @PatchMapping("/televisores/{id}")
-    public Televisao controleVolume(@PathVariable("id") String id, @RequestBody boolean estado){
-        return this.deviceService.alterarVolume(id, estado);
+    @PatchMapping("/televisores/{id}:controlar_volume")
+    public Televisao controleVolume(@PathVariable("id") String id, @RequestBody boolean volume){
+        return this.televisaoService.alterarVolume(id, volume);
     }
 
-    @PatchMapping("/televisores/{id}")
-    public Televisao controleCanal(@PathVariable("id") String id, @RequestBody boolean estado){
-        return this.deviceService.alterarCanal(id, estado);
+    @PatchMapping("/televisores/{id}:controlar_canal")
+    public Televisao controleCanal(@PathVariable("id") String id, @RequestBody boolean canal){
+        return this.televisaoService.alterarCanal(id, canal);
     }
 
-    @PatchMapping("/televisores/{id}")
+    @PatchMapping("/televisores/{id}:muda_canal")
     public Televisao mudaCanal(@PathVariable("id") String id, @RequestBody int canal){
-        return this.deviceService.mudaCanal(id, canal);
+        return this.televisaoService.mudaCanal(id, canal);
     }
+
     
+    //Ar Condicionado
+    @GetMapping("/condicionadores")
+    public List<ControleRemotoArCondicionado> allConditioner(){
+        List<ControleRemotoArCondicionado> listaAr = arService.listar();
+
+        return listaAr;
+    }
+
+    @GetMapping("/condicionadores/{id}")
+    public ArCondicionado ar(@PathVariable("id") String id){
+        //Exception
+        return arService.getAr(id);
+    }
+
+    @PostMapping("/condicionadores")
+    public ControleRemotoArCondicionado novoAr(@RequestBody ArCondicionado ar) {
+        //Exception
+        return this.arService.adicionar(ar);
+    }
+
+    @PutMapping("/condicionadores/{id}")
+    public ControleRemotoArCondicionado editarAr(@PathVariable("id") String id, @RequestBody ArCondicionado ar) {
+        //Exception        
+        return this.arService.atualizar(id, ar);
+    }
+
+    @DeleteMapping("/condicionadores/{id}")
+    public void deletaAr(@PathVariable("id") String id){
+        arService.deleta(id);
+    }
+
+    @PatchMapping("/condicionadores/{id}:ligar_desligar")
+    public ArCondicionado ligarDesligarAr(@PathVariable("id") String id, @RequestBody boolean power) {
+        //Exception        
+        return this.arService.powerOnOff(id, power);
+    }
+
+    @PatchMapping("/condicionadores/{id}:controlar_temperatura")
+    public ArCondicionado controleTemperatura(@PathVariable("id") String id, @RequestBody boolean power) {
+        //Exception        
+        return this.arService.alterarTemperatura(id, power);
+    }
 }
