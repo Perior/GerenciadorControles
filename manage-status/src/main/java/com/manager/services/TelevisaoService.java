@@ -13,7 +13,6 @@ public class TelevisaoService {
     
     private List<ControleRemotoTelevisao> tvList = new ArrayList<>();
 
-    //Televisores
     public List<ControleRemotoTelevisao> listar() {
         return this.tvList;
     }
@@ -32,7 +31,7 @@ public class TelevisaoService {
         ControleRemotoTelevisao controle = new ControleRemotoTelevisao(tv);
         tvList.add(controle);
         
-        return controle;//Return confirmation or error
+        return controle;
     }
 
     public ControleRemotoTelevisao atualizar(String id, Televisao tv) {
@@ -46,10 +45,10 @@ public class TelevisaoService {
             index++;
         }
 
-        return tvList.get(index); //Return confirmation or error
+        return tvList.get(index);
     }
 
-    public void deleta(String id) {
+    public void deletar(String id) {
         tvList.removeIf(t -> t.getDevice().getId().equals(id)); 
     }
 

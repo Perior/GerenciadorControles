@@ -32,24 +32,18 @@ public class GerenciadorDeAparelhos {
 
     //Televisão
     @GetMapping("/televisores")
-    public List<ControleRemotoTelevisao> allTv(){
-        //Televisao tv = new Televisao(true, MarcaEnum.LG, 200);
-        //televisaoService.adicionar(tv);
-        
+    public List<ControleRemotoTelevisao> listarTvs(){        
         List<ControleRemotoTelevisao> listaTv = televisaoService.listar();
-        //Exception
         return listaTv;
     }
 
     @GetMapping("/televisores/{id}")
-    public Televisao tv(@PathVariable("id") String id){
-        //Exception
+    public Televisao visualizarTv(@PathVariable("id") String id){
         return televisaoService.getTv(id);
     }
 
     @PostMapping("/televisores")
     public ControleRemotoTelevisao novaTv(@RequestBody Televisao tv) {
-        //Exception
         return this.televisaoService.adicionar(tv);
     }
 
@@ -59,72 +53,66 @@ public class GerenciadorDeAparelhos {
     }
 
     @DeleteMapping("/televisores/{id}")
-    public void deletaTv(@PathVariable("id") String id){
-        televisaoService.deleta(id);
+    public void deletarTv(@PathVariable("id") String id){
+        televisaoService.deletar(id);
     }
 
     @PatchMapping("/televisores/{id}:ligar_desligar")
-    public Televisao ligarDesligar(@PathVariable("id") String id, @RequestBody boolean power) {
-        //Exception        
+    public Televisao ligarDesligarTv(@PathVariable("id") String id, @RequestBody boolean power) {        
         return this.televisaoService.powerOnOff(id, power);
     }
 
     @PatchMapping("/televisores/{id}:controlar_volume")
-    public Televisao controleVolume(@PathVariable("id") String id, @RequestBody boolean volume){
+    public Televisao controlarVolume(@PathVariable("id") String id, @RequestBody boolean volume){
         return this.televisaoService.alterarVolume(id, volume);
     }
 
     @PatchMapping("/televisores/{id}:controlar_canal")
-    public Televisao controleCanal(@PathVariable("id") String id, @RequestBody boolean canal){
+    public Televisao controlarCanal(@PathVariable("id") String id, @RequestBody boolean canal){
         return this.televisaoService.alterarCanal(id, canal);
     }
 
     @PatchMapping("/televisores/{id}:muda_canal")
-    public Televisao mudaCanal(@PathVariable("id") String id, @RequestBody int canal){
+    public Televisao mudarCanal(@PathVariable("id") String id, @RequestBody int canal){
         return this.televisaoService.mudaCanal(id, canal);
     }
 
     
     //Ar Condicionado
     @GetMapping("/condicionadores")
-    public List<ControleRemotoArCondicionado> allConditioner(){
+    public List<ControleRemotoArCondicionado> listarArCondicionados(){
         List<ControleRemotoArCondicionado> listaAr = arService.listar();
 
         return listaAr;
     }
 
     @GetMapping("/condicionadores/{id}")
-    public ArCondicionado ar(@PathVariable("id") String id){
-        //Exception
+    public ArCondicionado visualizarArCondicionados(@PathVariable("id") String id){
         return arService.getAr(id);
     }
 
     @PostMapping("/condicionadores")
     public ControleRemotoArCondicionado novoAr(@RequestBody ArCondicionado ar) {
-        //Exception
         return this.arService.adicionar(ar);
     }
 
     @PutMapping("/condicionadores/{id}")
-    public ControleRemotoArCondicionado editarAr(@PathVariable("id") String id, @RequestBody ArCondicionado ar) {
-        //Exception        
+    public ControleRemotoArCondicionado editarAr(@PathVariable("id") String id, @RequestBody ArCondicionado ar) {        
         return this.arService.atualizar(id, ar);
     }
 
     @DeleteMapping("/condicionadores/{id}")
-    public void deletaAr(@PathVariable("id") String id){
-        arService.deleta(id);
+    public void deletarAr(@PathVariable("id") String id){
+        arService.deletar(id);
     }
 
     @PatchMapping("/condicionadores/{id}:ligar_desligar")
-    public ArCondicionado ligarDesligarAr(@PathVariable("id") String id, @RequestBody boolean power) {
-        //Exception        
+    public ArCondicionado ligarDesligarAr(@PathVariable("id") String id, @RequestBody boolean power) {        
         return this.arService.powerOnOff(id, power);
     }
 
     @PatchMapping("/condicionadores/{id}:controlar_temperatura")
-    public ArCondicionado controleTemperatura(@PathVariable("id") String id, @RequestBody boolean power) {
-        //Exception        
-        return this.arService.alterarTemperatura(id, power);
+    public ArCondicionado controleTemperatura(@PathVariable("id") String id, @RequestBody boolean temperatura) {        
+        return this.arService.alterarTemperatura(id, temperatura);
     }
 }

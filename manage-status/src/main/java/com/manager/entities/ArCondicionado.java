@@ -1,28 +1,28 @@
 package com.manager.entities;
 
 public class ArCondicionado extends Device{
-    private int temperature;
+    private int temperatura;
     
     
     public ArCondicionado(boolean power, MarcaEnum modelo) {
         super(power, modelo);
-        this.temperature = 26;
+        this.temperatura = 26;
     }
     
 
-    public int getTemperature() {
-        return temperature;
+    public int getTemperatura() {
+        return temperatura;
     }
 
-    public void setTemperature(boolean syntTemp) {
+    public void setTemperatura(boolean syntTemp) {
 
         if(syntTemp){
-            if(this.temperature < 28)
-                this.temperature++;
+            if(this.temperatura < 28)
+                this.temperatura++;
         }
         else{
-            if(this.temperature > 16)
-                this.temperature--;
+            if(this.temperatura > 16)
+                this.temperatura--;
         }
         
     }
@@ -30,7 +30,7 @@ public class ArCondicionado extends Device{
 
     @Override
     public String toString() {
-        return "ArCondicionado [" + super.toString() + ", temperature=" + temperature + "]";
+        return "ArCondicionado [" + super.toString() + ", temperatura=" + temperatura + "]";
     }
 
     

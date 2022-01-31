@@ -1,5 +1,6 @@
 package com.manager;
 
+import com.manager.services.ArCondicionadoService;
 import com.manager.services.TelevisaoService;
 
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,11 @@ public class ApplicationConfiguration {
     @Bean
     public TelevisaoService controleTvBase(){
         return new TelevisaoService();
+    }
+
+    @Bean
+    public ArCondicionadoService controleArBase(){
+        return new ArCondicionadoService();
     }
 
 }

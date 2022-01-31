@@ -7,11 +7,11 @@ public class ControleRemotoArCondicionado extends ControleRemotoBase<ArCondicion
     }
 
     public void tempUp(){
-        this.getDevice().setTemperature(true);
+        this.getDevice().setTemperatura(true);
         
     }
     public void tempDown(){
-        this.getDevice().setTemperature(false);
+        this.getDevice().setTemperatura(false);
         
     }
 }

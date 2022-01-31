@@ -26,8 +26,12 @@ public abstract class Device {
         this.power = power;
     }
 
-    public MarcaEnum getModelo() {
+    public MarcaEnum marca(){
         return modelo;
+    }
+
+    public String getModelo() {
+        return modelo.getDescription();
     }
 
     public void setModelo(MarcaEnum modelo) {
@@ -36,7 +40,7 @@ public abstract class Device {
 
     @Override
     public String toString() {
-        return "id=" + id + ", modelo=" + modelo + ", power=" + power;
+        return "id=" + id + ", modelo=" + modelo.getDescription() + ", power=" + power;
     }
 
 }

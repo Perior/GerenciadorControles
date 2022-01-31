@@ -13,7 +13,6 @@ public class ArCondicionadoService {
 
     private List<ControleRemotoArCondicionado> arList = new ArrayList<>();
 
-    //Condicionadores de Ar
     public List<ControleRemotoArCondicionado> listar() {
         return this.arList;
     }
@@ -32,7 +31,7 @@ public class ArCondicionadoService {
         ControleRemotoArCondicionado controle = new ControleRemotoArCondicionado(ar);
         arList.add(controle);
         
-        return controle;//Return confirmation or error
+        return controle;
     }
 
     public ControleRemotoArCondicionado atualizar(String id, ArCondicionado ar) {
@@ -46,10 +45,11 @@ public class ArCondicionadoService {
             index++;
         }
 
-        return arList.get(index); //Return confirmation or error
+        return arList.get(index);
     }
 
-    public void deleta(String id) {
+    public void deletar(String id) {
+        
         arList.removeIf(t -> t.getDevice().getId().equals(id)); 
     }
 
@@ -64,7 +64,7 @@ public class ArCondicionadoService {
     public ArCondicionado alterarTemperatura(String id, boolean estado) {
         ArCondicionado ar = getAr(id);
 
-        ar.setTemperature(estado);
+        ar.setTemperatura(estado);
 
         return ar;
     }
