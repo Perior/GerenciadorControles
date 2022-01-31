@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.manager.entities.ControleRemotoTelevisao;
 import com.manager.entities.Televisao;
+import com.manager.exceptions.ModeloNullException;
 
 import org.springframework.stereotype.Service;
 
@@ -27,14 +28,14 @@ public class TelevisaoService {
         return tv;
     }
 
-    public ControleRemotoTelevisao adicionar(Televisao tv) {
+    public ControleRemotoTelevisao adicionar(Televisao tv) throws ModeloNullException {
         ControleRemotoTelevisao controle = new ControleRemotoTelevisao(tv);
         tvList.add(controle);
         
         return controle;
     }
 
-    public ControleRemotoTelevisao atualizar(String id, Televisao tv) {
+    public ControleRemotoTelevisao atualizar(String id, Televisao tv) throws ModeloNullException {
         ControleRemotoTelevisao controle = new ControleRemotoTelevisao(tv);
         int index = 0;
         for(ControleRemotoTelevisao tv1 : tvList){

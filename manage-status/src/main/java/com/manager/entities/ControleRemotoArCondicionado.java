@@ -1,8 +1,10 @@
 package com.manager.entities;
 
+import com.manager.exceptions.ModeloNullException;
+
 public class ControleRemotoArCondicionado extends ControleRemotoBase<ArCondicionado> {
     
-    public ControleRemotoArCondicionado(ArCondicionado ar){
+    public ControleRemotoArCondicionado(ArCondicionado ar) throws ModeloNullException{
         super(ar);
     }
 

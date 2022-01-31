@@ -1,8 +1,10 @@
 package com.manager.entities;
 
+import com.manager.exceptions.ModeloNullException;
+
 public class ControleRemotoTelevisao extends ControleRemotoBase<Televisao>{
 
-    public ControleRemotoTelevisao(Televisao tv){
+    public ControleRemotoTelevisao(Televisao tv) throws ModeloNullException{
         super(tv);
         
     }

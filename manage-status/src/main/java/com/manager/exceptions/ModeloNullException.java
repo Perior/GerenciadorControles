@@ -3,7 +3,7 @@ package com.manager.exceptions;
 
 public class ModeloNullException extends Exception{
     
-    public ModeloNullException(String errorMessage){
-        super(errorMessage);
+    public ModeloNullException(){
+        super("Atribua uma marca a esse aparelho.");
     }
 }

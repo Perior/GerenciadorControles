@@ -9,7 +9,11 @@ public class Televisao extends Device{
     public Televisao(boolean power, MarcaEnum modelo, int totalCanal) {
         super(power, modelo);
         this.volume = 10;
-        this.totalCanal = totalCanal;
+        if(totalCanal < 1){
+            this.totalCanal = 1;
+        } else {
+            this.totalCanal = totalCanal;
+        }
         this.canal = 1;
     }
 

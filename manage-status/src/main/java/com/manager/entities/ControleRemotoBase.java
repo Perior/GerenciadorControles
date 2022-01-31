@@ -1,10 +1,15 @@
 package com.manager.entities;
 
+import com.manager.exceptions.ModeloNullException;
+
 public abstract class ControleRemotoBase<T extends Device> {
 
     private T device;
 
-    public ControleRemotoBase(T device){
+    public ControleRemotoBase(T device) throws ModeloNullException{
+        if(device.marca() == null){
+            throw new ModeloNullException();
+        }
         this.device = device;
     }
 

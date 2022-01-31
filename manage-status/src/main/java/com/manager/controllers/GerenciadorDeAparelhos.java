@@ -6,6 +6,7 @@ import com.manager.entities.ArCondicionado;
 import com.manager.entities.ControleRemotoArCondicionado;
 import com.manager.entities.ControleRemotoTelevisao;
 import com.manager.entities.Televisao;
+import com.manager.exceptions.ModeloNullException;
 import com.manager.services.ArCondicionadoService;
 import com.manager.services.TelevisaoService;
 
@@ -28,7 +29,7 @@ public class GerenciadorDeAparelhos {
     private TelevisaoService televisaoService;
 
     @Autowired
-    private ArCondicionadoService arService;
+    private ArCondicionadoService arCondicionadoService;
 
     //Televisão
     @GetMapping("/televisores")
@@ -43,12 +44,12 @@ public class GerenciadorDeAparelhos {
     }
 
     @PostMapping("/televisores")
-    public ControleRemotoTelevisao novaTv(@RequestBody Televisao tv) {
+    public ControleRemotoTelevisao novaTv(@RequestBody Televisao tv) throws ModeloNullException {
         return this.televisaoService.adicionar(tv);
     }
 
     @PutMapping("/televisores/{id}")
-    public ControleRemotoTelevisao editarTv(@PathVariable("id") String id, @RequestBody Televisao tv) {
+    public ControleRemotoTelevisao editarTv(@PathVariable("id") String id, @RequestBody Televisao tv) throws ModeloNullException {
         return this.televisaoService.atualizar(id, tv);
     }
 
@@ -81,38 +82,38 @@ public class GerenciadorDeAparelhos {
     //Ar Condicionado
     @GetMapping("/condicionadores")
     public List<ControleRemotoArCondicionado> listarArCondicionados(){
-        List<ControleRemotoArCondicionado> listaAr = arService.listar();
+        List<ControleRemotoArCondicionado> listaAr = arCondicionadoService.listar();
 
         return listaAr;
     }
 
     @GetMapping("/condicionadores/{id}")
     public ArCondicionado visualizarArCondicionados(@PathVariable("id") String id){
-        return arService.getAr(id);
+        return arCondicionadoService.getAr(id);
     }
 
     @PostMapping("/condicionadores")
-    public ControleRemotoArCondicionado novoAr(@RequestBody ArCondicionado ar) {
-        return this.arService.adicionar(ar);
+    public ControleRemotoArCondicionado novoAr(@RequestBody ArCondicionado ar) throws ModeloNullException {
+        return this.arCondicionadoService.adicionar(ar);
     }
 
     @PutMapping("/condicionadores/{id}")
-    public ControleRemotoArCondicionado editarAr(@PathVariable("id") String id, @RequestBody ArCondicionado ar) {        
-        return this.arService.atualizar(id, ar);
+    public ControleRemotoArCondicionado editarAr(@PathVariable("id") String id, @RequestBody ArCondicionado ar) throws ModeloNullException {        
+        return this.arCondicionadoService.atualizar(id, ar);
     }
 
     @DeleteMapping("/condicionadores/{id}")
     public void deletarAr(@PathVariable("id") String id){
-        arService.deletar(id);
+        arCondicionadoService.deletar(id);
     }
 
     @PatchMapping("/condicionadores/{id}:ligar_desligar")
     public ArCondicionado ligarDesligarAr(@PathVariable("id") String id, @RequestBody boolean power) {        
-        return this.arService.powerOnOff(id, power);
+        return this.arCondicionadoService.powerOnOff(id, power);
     }
 
     @PatchMapping("/condicionadores/{id}:controlar_temperatura")
     public ArCondicionado controleTemperatura(@PathVariable("id") String id, @RequestBody boolean temperatura) {        
-        return this.arService.alterarTemperatura(id, temperatura);
+        return this.arCondicionadoService.alterarTemperatura(id, temperatura);
     }
 }

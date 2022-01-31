@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.manager.entities.ArCondicionado;
 import com.manager.entities.ControleRemotoArCondicionado;
+import com.manager.exceptions.ModeloNullException;
 
 import org.springframework.stereotype.Service;
 
@@ -27,14 +28,14 @@ public class ArCondicionadoService {
         return ar;
     }
 
-    public ControleRemotoArCondicionado adicionar(ArCondicionado ar) {
+    public ControleRemotoArCondicionado adicionar(ArCondicionado ar) throws ModeloNullException {
         ControleRemotoArCondicionado controle = new ControleRemotoArCondicionado(ar);
         arList.add(controle);
         
         return controle;
     }
 
-    public ControleRemotoArCondicionado atualizar(String id, ArCondicionado ar) {
+    public ControleRemotoArCondicionado atualizar(String id, ArCondicionado ar) throws ModeloNullException {
         ControleRemotoArCondicionado controle = new ControleRemotoArCondicionado(ar);
         int index = 0;
         for(ControleRemotoArCondicionado ar1 : arList){
