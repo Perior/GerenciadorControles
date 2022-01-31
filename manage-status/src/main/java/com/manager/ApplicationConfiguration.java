@@ -15,9 +15,4 @@ public class ApplicationConfiguration {
         return new TelevisaoService();
     }
 
-    @Bean
-    public ArCondicionadoService controleArBase(){
-        return new ArCondicionadoService();
-    }
-
 }
