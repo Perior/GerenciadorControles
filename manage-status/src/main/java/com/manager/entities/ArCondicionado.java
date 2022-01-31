@@ -4,8 +4,9 @@ public class ArCondicionado extends Device{
     private int temperature;
     
     
-    public ArCondicionado(boolean power, int tempVol, MarcaEnum modelo) {
-        super(power, tempVol, modelo);
+    public ArCondicionado(boolean power, MarcaEnum modelo) {
+        super(power, modelo);
+        this.temperature = 26;
     }
     
 
@@ -25,5 +26,13 @@ public class ArCondicionado extends Device{
         }
         
     }
+
+
+    @Override
+    public String toString() {
+        return "ArCondicionado [" + super.toString() + ", temperature=" + temperature + "]";
+    }
+
+    
 
 }

@@ -6,25 +6,26 @@ public class Televisao extends Device{
     private int canal;
 
 
-    public Televisao(boolean power, int tempVol, MarcaEnum modelo, int totalCanal, int canal) {
-        super(power, tempVol, modelo);
+    public Televisao(boolean power, MarcaEnum modelo, int totalCanal) {
+        super(power, modelo);
+        this.volume = 10;
         this.totalCanal = totalCanal;
-        this.canal = canal;
+        this.canal = 1;
     }
 
     public int getCanal() {
         return canal;
     }
 
-    public void setCanal(boolean syntCanal) {
+    public void syntCanal(boolean syntCanal) {
         
         if(syntCanal){
             if(canal < totalCanal)
-                canal++;
+                this.canal++;
         }
         else{
             if(canal > 1)
-                canal--;
+                this.canal--;
         }
     }
 
@@ -37,6 +38,10 @@ public class Televisao extends Device{
             //throw exception "Canal não disponível"
         }
 
+    }
+
+    public int getTotalCanal() {
+        return totalCanal;
     }
 
     public int getVolume() {
@@ -54,6 +59,11 @@ public class Televisao extends Device{
                 this.volume--;
         }
         
+    }
+
+    @Override
+    public String toString() {
+        return "Televisao [" + super.toString() + ", canal=" + canal + ", totalCanal=" + totalCanal + ", volume=" + volume + "]";
     }
 
 }
