@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.manager.entities.ControleRemotoTelevisao;
 import com.manager.entities.Televisao;
+import com.manager.exceptions.CanalIndisponivelException;
 import com.manager.exceptions.ModeloNullException;
 
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class TelevisaoService {
 
     public Televisao getTv(String id) {
         Televisao tv = tvList.stream()
-                    .filter(t -> id.equals(t.getDevice().getId()))
+                    .filter(t -> id.equals(t.getId()))
                     .findFirst()
                     .orElse(null)
                     .getDevice();
@@ -29,6 +30,7 @@ public class TelevisaoService {
     }
 
     public ControleRemotoTelevisao adicionar(Televisao tv) throws ModeloNullException {
+        tv.setTotalCanal(tv.getTotalCanal());
         ControleRemotoTelevisao controle = new ControleRemotoTelevisao(tv);
         tvList.add(controle);
         
@@ -36,11 +38,10 @@ public class TelevisaoService {
     }
 
     public ControleRemotoTelevisao atualizar(String id, Televisao tv) throws ModeloNullException {
-        ControleRemotoTelevisao controle = new ControleRemotoTelevisao(tv);
         int index = 0;
         for(ControleRemotoTelevisao tv1 : tvList){
-            if(tv1.getDevice().getId().equals(id)){
-                tvList.set(index, controle);
+            if(tv1.getId().equals(id)){
+                tv1.setDevice(tv);
                 break;
             }
             index++;
@@ -50,7 +51,7 @@ public class TelevisaoService {
     }
 
     public void deletar(String id) {
-        tvList.removeIf(t -> t.getDevice().getId().equals(id)); 
+        tvList.removeIf(t -> t.getId().equals(id)); 
     }
 
     public Televisao powerOnOff(String id, boolean estado) {
@@ -77,12 +78,16 @@ public class TelevisaoService {
         return tv;
     }
 
-    public Televisao mudaCanal(String id, int canal) {
+    public Televisao mudaCanal(String id, int canal) throws CanalIndisponivelException {
         Televisao tv = getTv(id);
 
         tv.setCanal(canal);
+        // try {
+        //     tv.setCanal(canal);
+        // } catch (CanalIndisponivelException e) {
+        //     e.getMessage();
+        // }
 
         return tv;
     }
-
 }

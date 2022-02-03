@@ -1,34 +1,31 @@
 package com.manager.entities;
 
+import com.manager.exceptions.CanalIndisponivelException;
 import com.manager.exceptions.ModeloNullException;
 
 public class ControleRemotoTelevisao extends ControleRemotoBase<Televisao>{
 
     public ControleRemotoTelevisao(Televisao tv) throws ModeloNullException{
-        super(tv);
-        
+        super(tv); 
     }
 
 
     public void volumeUp(){
         this.getDevice().setVolume(true);
-        
     }
     public void volumeDown(){
         this.getDevice().setVolume(false);
-        
     }
 
     public void canalUp(){
-        this.getDevice().syntCanal(true);
-        
-    }
-    public void canalDown(){
-        this.getDevice().syntCanal(false);
-        
+        this.getDevice().syntCanal(true);   
     }
 
-    public void changeCanal(int canal){
+    public void canalDown(){
+        this.getDevice().syntCanal(false);
+    }
+
+    public void changeCanal(int canal) throws CanalIndisponivelException{
         this.getDevice().setCanal(canal);
     }
 
@@ -37,6 +34,4 @@ public class ControleRemotoTelevisao extends ControleRemotoBase<Televisao>{
     public String toString() {
         return "ControleRemotoTelevisao [" + getDevice().toString() + "]";
     }
-
-    
 }

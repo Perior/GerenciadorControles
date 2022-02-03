@@ -20,7 +20,7 @@ public class ArCondicionadoService {
 
     public ArCondicionado getAr(String id) {
         ArCondicionado ar = arList.stream()
-                    .filter(t -> id.equals(t.getDevice().getId()))
+                    .filter(t -> id.equals(t.getId()))
                     .findFirst()
                     .orElse(null)
                     .getDevice();
@@ -36,11 +36,10 @@ public class ArCondicionadoService {
     }
 
     public ControleRemotoArCondicionado atualizar(String id, ArCondicionado ar) throws ModeloNullException {
-        ControleRemotoArCondicionado controle = new ControleRemotoArCondicionado(ar);
         int index = 0;
         for(ControleRemotoArCondicionado ar1 : arList){
-            if(ar1.getDevice().getId().equals(id)){
-                arList.set(index, controle);
+            if(ar1.getId().equals(id)){
+                ar1.setDevice(ar);
                 break;
             }
             index++;
@@ -50,8 +49,7 @@ public class ArCondicionadoService {
     }
 
     public void deletar(String id) {
-        
-        arList.removeIf(t -> t.getDevice().getId().equals(id)); 
+        arList.removeIf(t -> t.getId().equals(id)); 
     }
 
     public ArCondicionado powerOnOff(String id, boolean estado) {
@@ -69,5 +67,4 @@ public class ArCondicionadoService {
 
         return ar;
     }
-    
 }

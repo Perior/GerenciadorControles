@@ -6,6 +6,7 @@ import com.manager.entities.ArCondicionado;
 import com.manager.entities.ControleRemotoArCondicionado;
 import com.manager.entities.ControleRemotoTelevisao;
 import com.manager.entities.Televisao;
+import com.manager.exceptions.CanalIndisponivelException;
 import com.manager.exceptions.ModeloNullException;
 import com.manager.services.ArCondicionadoService;
 import com.manager.services.TelevisaoService;
@@ -73,8 +74,8 @@ public class GerenciadorDeAparelhos {
         return this.televisaoService.alterarCanal(id, canal);
     }
 
-    @PatchMapping("/televisores/{id}:muda_canal")
-    public Televisao mudarCanal(@PathVariable("id") String id, @RequestBody int canal){
+    @PatchMapping("/televisores/{id}:mudar_canal")
+    public Televisao mudarCanal(@PathVariable("id") String id, @RequestBody int canal) throws CanalIndisponivelException{
         return this.televisaoService.mudaCanal(id, canal);
     }
 

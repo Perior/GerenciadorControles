@@ -1,5 +1,7 @@
 package com.manager.entities;
 
+import com.manager.exceptions.CanalIndisponivelException;
+
 public class Televisao extends Device{
     private int volume;
     private int totalCanal;
@@ -9,11 +11,7 @@ public class Televisao extends Device{
     public Televisao(boolean power, MarcaEnum modelo, int totalCanal) {
         super(power, modelo);
         this.volume = 10;
-        if(totalCanal < 1){
-            this.totalCanal = 1;
-        } else {
-            this.totalCanal = totalCanal;
-        }
+        this.totalCanal = totalCanal;
         this.canal = 1;
     }
 
@@ -33,19 +31,26 @@ public class Televisao extends Device{
         }
     }
 
-    public void setCanal(int changeCanal) {
+    public void setCanal(int changeCanal) throws CanalIndisponivelException {
 
         if(changeCanal > 0 && changeCanal <= totalCanal){
             this.canal = changeCanal;
         }
         else{
-            //throw exception "Canal não disponível"
+            throw new CanalIndisponivelException();
         }
-
     }
 
     public int getTotalCanal() {
         return totalCanal;
+    }
+
+    public void setTotalCanal(int totalCanal) {
+        if(totalCanal < 1){
+            this.totalCanal = 1;
+        } else {
+            this.totalCanal = totalCanal;
+        }
     }
 
     public int getVolume() {
@@ -62,12 +67,10 @@ public class Televisao extends Device{
             if(this.volume > 0)
                 this.volume--;
         }
-        
     }
 
     @Override
     public String toString() {
         return "Televisao [" + super.toString() + ", canal=" + canal + ", totalCanal=" + totalCanal + ", volume=" + volume + "]";
     }
-
 }

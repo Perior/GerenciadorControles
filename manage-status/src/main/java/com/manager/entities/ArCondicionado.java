@@ -32,7 +32,4 @@ public class ArCondicionado extends Device{
     public String toString() {
         return "ArCondicionado [" + super.toString() + ", temperatura=" + temperatura + "]";
     }
-
-    
-
 }
