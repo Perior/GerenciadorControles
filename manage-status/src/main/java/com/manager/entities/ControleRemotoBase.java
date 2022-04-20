@@ -20,8 +20,8 @@ public abstract class ControleRemotoBase<T extends Device> {
         return id;
     }
 
-    public void turnOn(){
-        device.setPower(true);
+    public void turnPower(){
+        device.setPower();
     }
 
     public T getDevice() {
@@ -31,8 +31,4 @@ public abstract class ControleRemotoBase<T extends Device> {
     public void setDevice(T device) {
         this.device = device;
     }
-
-    public void turnOff(){
-        device.setPower(false);
-    } 
 }

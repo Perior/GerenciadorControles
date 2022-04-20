@@ -16,8 +16,8 @@ public abstract class Device {
         return power;
     }
 
-    public void setPower(boolean power) {
-        this.power = power;
+    public void setPower() {
+        this.power = !power;
     }
 
     public MarcaEnum marca(){

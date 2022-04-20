@@ -54,10 +54,10 @@ public class TelevisaoService {
         tvList.removeIf(t -> t.getId().equals(id)); 
     }
 
-    public Televisao powerOnOff(String id, boolean estado) {
+    public Televisao powerOnOff(String id) {
         Televisao tv = getTv(id);
 
-        tv.setPower(estado);
+        tv.setPower();
 
         return tv;
     }

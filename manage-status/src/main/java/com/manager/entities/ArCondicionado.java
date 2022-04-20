@@ -7,8 +7,7 @@ public class ArCondicionado extends Device{
     public ArCondicionado(boolean power, MarcaEnum modelo) {
         super(power, modelo);
         this.temperatura = 26;
-    }
-    
+    }    
 
     public int getTemperatura() {
         return temperatura;
